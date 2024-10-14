@@ -14,11 +14,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Logout } from "../../redux/AuthSlice";
-import { deleteUser, get, post } from '../../services/ApiEndpoint';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-
-
+import { deleteUser, get, post } from "../../services/ApiEndpoint";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SIDEBAR_ITEMS = [
   {
@@ -27,30 +25,30 @@ const SIDEBAR_ITEMS = [
     color: "#6366f1",
     href: "/report",
   },
-  {
-    name: "Pending",
-    icon: Users,
-    color: "#8B5CF6",
-    href: "/pending",
-  },
-  {
-    name: "Rejected",
-    icon: ShoppingBag,
-    color: "#EC4899",
-    href: "/rejected",
-  },
+  // {
+  //   name: "Pending",
+  //   icon: Users,
+  //   color: "#8B5CF6",
+  //   href: "/pending",
+  // },
+  // {
+  //   name: "Rejected",
+  //   icon: ShoppingBag,
+  //   color: "#EC4899",
+  //   href: "/rejected",
+  // },
   {
     name: "Expenses",
     icon: ShoppingCart,
     color: "#10B981",
     href: "/expense",
   },
-  {
-    name: "Incomes",
-    icon: DollarSign,
-    color: "#F59E0B",
-    href: "/income",
-  },
+  // {
+  //   name: "Incomes",
+  //   icon: DollarSign,
+  //   color: "#F59E0B",
+  //   href: "/income",
+  // },
   {
     name: "Transactions",
     icon: TrendingUp,
@@ -70,19 +68,18 @@ const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const userDetails = useSelector((state) => state.AuthSlice?.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate(); 
-
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
-	try {
-	  const request = await post("/api/auth/logout");
-	  if (request.status == 200) {
-		dispatch(Logout());
-		navigate("/login");
-	  }
-	} catch (error) {
-	  console.log(error);
-	}
+    try {
+      const request = await post("/api/auth/logout");
+      if (request.status == 200) {
+        dispatch(Logout());
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -143,7 +140,7 @@ const Sidebar = () => {
         <button
           onClick={handleLogout}
           className="py-2 px-2 w-10 h-10 bg-red-600 text-white text-center font-semibold rounded-full flex hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 animate__animated animate__pulse"
-        //   style={{ width: "auto" }}
+          //   style={{ width: "auto" }}
         >
           <LucideLogOut />
         </button>
